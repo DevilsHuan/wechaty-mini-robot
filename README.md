@@ -29,11 +29,12 @@
 
 ## 注意
 
-1、程序里边涉及到使用wechaty token需要微信添加“botorange_yeah”进行申请，具体可进入[wiki](https://github.com/juzibot/Welcome/wiki/Everything-about-Wechaty)了解；
+1、程序里边涉及到使用wechaty token需要微信添加“botorange_yeah”进行申请，具体可进入[wiki](https://github.com/juzibot/Welcome/wiki/Everything-about-Wechaty)了解；<br/>
 2、程序里涉及到的数据库请修改为自己的配置；
 
 ## 数据库脚本
 
+```
 -- 微信签到托管群
 CREATE TABLE `weixin_room` (
   `id` int(11) NOT NULL AUTO_INCREMENT, -- 自增长标识
@@ -69,6 +70,7 @@ create table `weixin_room_signin`(
   `create_time` bigint(1) DEFAULT NULL, -- 创建时间
    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+```
 
 ## wiki
 
