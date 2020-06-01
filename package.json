@@ -1,0 +1,22 @@
+{
+  "name": "wechaty-mini-robot",
+  "version": "1.0.0",
+  "description": "wechaty-mini-robot",
+  "main": "src/main.js",
+  "scripts": {
+    "server": "nodemon bin/minirobot"
+  },
+  "dependencies": {
+    "koa": "^2.12.0",
+    "koa-router": "^9.0.1",
+    "koa-static": "^5.0.0",
+    "moment": "^2.26.0",
+    "mysql2": "^2.1.0",
+    "sequelize": "^5.21.11",
+    "wechaty": "^0.38.4",
+    "wechaty-puppet-padplus": "^0.6.3"
+  },
+  "devDependencies": {},
+  "author": "Devils",
+  "license": "ISC"
+}

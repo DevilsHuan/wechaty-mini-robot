@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<head>
+    <title>mini robot</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <link rel="stylesheet" type="text/css" href="./static/css/core.css"/>
+    <style type="text/css">
+    .qrcode{
+        min-height:250px;
+        text-align:center;
+    }
+    ul,h3{
+        margin:0px 10px;
+    }
+    li{
+        line-height:1.5;
+    }
+    h3{
+        margin-top:30px;
+    }
+    .status{
+        margin-top:20px;
+        color:green;
+        text-align:center;
+    }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="row qrcode">
+            <img :src="qrcode"/>
+        </div>
+        <h3>使用需知</h3>
+        <ul>
+            <li>1.本产品使用iPad登录协议，成功登录后将在手机上方显示【iPad已登录】</li>
+            <li>2.使用期间请注意以下三点，防止托管的微信被踢下线：</li>
+            <li>3.扫码登录后，关闭网页或电脑，微信依然会在后台托管</li>
+        </ul>
+        <div class="status" v-if="status">登陆状态检测中</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript" src="./static/script/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript">
+    var app = new Vue({
+        el: '.page',
+        data: {
+            status:true,
+            qrcode:null
+        },
+        mounted(){
+            $.get("/robot/start",(res)=>{
+                this.status=false
+                if(res!=""){
+                    this.qrcode=res
+                }
+                this.onLogin()
+            })
+        },
+        methods:{
+            onLogin(){
+                let _self=this
+                $.get('/robot/logonoff',res=>{
+                    console.log(res)
+                    if(res=="loging"){
+                        setTimeout(function(){
+                            _self.onLogin()
+                        },2000)
+                    }else{
+                        location.href="./index.html"
+                    }
+                })
+            }
+        }
+    })
+    </script>
+</body>
